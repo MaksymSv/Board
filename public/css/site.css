@@ -1,0 +1,41 @@
+body {
+    color: #222222;
+    margin-top: 50px;
+}
+
+@import url(http://fonts.googleapis.com/css?family=Schoolbell);
+
+.note {
+    display: inline-block;
+    font-family: 'Schoolbell', cursive;
+    font-size: 20px;
+    height: 256px;
+    padding: 16px 28px;
+    position: relative;
+    vertical-align: text-top;
+    width: 256px;
+}
+
+.note-yellow{
+    background-color: #ffff00 ;
+}
+
+.note-blue{
+    background-color: deepskyblue;
+}
+
+.note-orange{
+    background-color: orange;
+}
+
+.note-green{
+    background-color: greenyellow;
+}
+
+.note-author {
+    font-family: Helvetica, arial, sans-serif;
+    bottom: 50px;
+    position: absolute;
+    right: 20px;
+    text-align: right;
+}
