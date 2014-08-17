@@ -24,6 +24,12 @@
                         <li class="nav">
                             <a href="/">Home</a>
                         </li>
+                        <li class="nav">
+                            <a href="/register">Register</a>
+                        </li>
+                        <li class="nav">
+                            <a href="/login">Login</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -37,15 +43,16 @@
             @html.block("body")
         </section>
         <footer class="container">
-            <p>The Board</p>
+            <p>the Board @ maxs</p>
         </footer>
 
         <script src="/lib/jquery/dist/jquery.min.js"></script>
         <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-		<script src="/lib/undescore/underscore.js"></script>
+		<script src="/lib/underscore/underscore.js"></script>
         <script src="/lib/angular/angular.min.js"></script>
+        <script src="/lib/angular-route/angular-route.min.js"></script>
         @html.block("scripts")
-        <script src="/public/lib/angular-bootstrap/ui-bootstrap.min.js"></script>
+        <script src="/lib/angular-bootstrap/ui-bootstrap.min.js"></script>
 
 	</body>
 </html> 

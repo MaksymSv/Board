@@ -1,32 +1,48 @@
 @html.extend('layout', function(model){
 
     @html.block("scripts", function(model){
-    }
+        <script src="/js/notesView.js"></script>
+    })
 
 
     @html.block("body", function(model){
 
-<div>
+<div ng-app="notesView">
     <a href="/" class="btn btn-info">Back</a>
-    <div>
-        <div class="note note-yellow">
-            <div>This is sample note</div>
+    <div ng-controller="notesViewController">
+        <div class="note" ng-class="'note-' + note.color" ng-repeat="note in notes">
+            <div>{{note.note}}</div>
             <div class="note-autor">
-                <small>-Max</small>
+                <small>-{{note.author}}</small>
             </div>
         </div>
-        <div class="note note-orange">
-            <div>This is sample note</div>
-            <div class="note-autor">
-                <small>-Max</small>
+
+        <form role="form" class="form-horizontal" name="newNoteForm" ng-submit="save()">
+            <div class="form-group">
+                <label class="control-label col-lg-1">Color</label>
+                <div class="col-lg-5">
+                    <div class="btn-group">
+                        <button type="button" ng-model="newNote.color" class="btn btn-primary" btn-radio="'yellow'">Yellow</button>
+                        <button type="button" ng-model="newNote.color" class="btn btn-primary" btn-radio="'blue'">Blue</button>
+                        <button type="button" ng-model="newNote.color" class="btn btn-primary" btn-radio="'green'">Green</button>
+                        <button type="button" ng-model="newNote.color" class="btn btn-primary" btn-radio="'orange'">Orange</button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="note note-green">
-            <div>This is sample note</div>
-            <div class="note-autor">
-                <small>-Max</small>
+            <div class="form-group">
+                <label class="control-label col-lg-1">Content</label>
+                <div class="col-lg-5">
+                    <textarea ng-model="newNote.note" cols="30" rows="2" name="note" placeholder="your note" class="form-control" required maxlength="120 "></textarea>
+                    <span ng-show="newNoteForm.note.$error.required">Required</span>
+                    <p>{{ 120 - newNote.note.length }}</p>
+                </div>
             </div>
-        </div>
+            <div class="form-group">
+                <div class="col-lg-offset-1 col-lg-4">
+                    <input type="submit" value="Save" class="btn btn-primary" ng-disabled="newNoteForm.$invalid">
+                </div>
+            </div>
+        </form>
     </div>
 
 </div>

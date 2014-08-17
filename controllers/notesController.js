@@ -13,10 +13,10 @@
 
             data.getNotes(categoryName, function (err, notes) {
                 if(err){
-                    res.send(400, err);
+                    res.status(400).send(err);
                 } else {
                     res.set("Content-Type", "application/json");
-                    res.send(200, notes.notes);
+                    res.status(200).send(notes.notes);
                 }
             })
 
@@ -32,12 +32,14 @@
                 author: "Max"
             };
 
+            console.log("noteToInsert: " + noteToInsert);
+
             data.addNote(categoryName, noteToInsert, function (err) {
                 if(err){
-                    res.send(400, "Failed to insert note to data store: " + err);
+                    res.status(400).send("Failed to insert note to data store: " + err);
                 } else {
                     res.set("Content-Type", "application/json");
-                    res.send(201, noteToInsert);
+                    res.status(201).send(noteToInsert);
                 }
             })
 

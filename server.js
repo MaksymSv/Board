@@ -5,6 +5,8 @@ var controllers = require("./controllers");
 var cookieParser = require("cookie-parser");
 var expressSession = require("express-session");
 var flash = require("connect-flash");
+var auth = require("./auth");
+
 
 var app = express();
 
@@ -17,6 +19,8 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressSession({secret: "SomeKeyPhraseWillWorkHere", saveUninitialized: true, resave: true }));
 app.use(flash());
+
+auth.init(app);
 
 // into routing
 controllers.init(app);
