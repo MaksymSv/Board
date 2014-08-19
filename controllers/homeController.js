@@ -2,6 +2,7 @@
 	homeController.init = function(app){
 	
 		var data = require("../data");
+        var auth = require("../auth");
 
 		app.get("/", function(req, res) {
 			
@@ -12,16 +13,17 @@
                         title : "Express + Vash",
                         error: err,
                         categories: results,
-                        newCatError: "get from res.flash" //res.flash("newCatName")
+                        newCatError: req.flash("newCatName"),
+                        user: req.user
                     });
 			});
 		
 			
 		});
 
-        app.get("/notes/:categoryName", function (req, res) {
+        app.get("/notes/:categoryName", auth.ensureAuthenticated, function (req, res) {
             var categoryName = req.params.categoryName;
-            res.render("notes", {title: categoryName});
+            res.render("notes", {title: categoryName, user: req.user});
         });
 
         app.post("/newCategory", function (req, res) {

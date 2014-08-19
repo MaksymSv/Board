@@ -26,12 +26,20 @@
         }, function (err) {
             alert(err);
         });
+
+        var socket = io.connect();
+        socket.on("broadcast note", function (note) {
+            $scope.notes.push(note);
+            $scope.$apply();
+        });
         
         $scope.save = function () {
            $http.post(noteUrl, $scope.newNote)
                .then(function (result) {
                    $scope.notes.push(result.data);
                    $scope.newNote = createBlankNote();
+
+                   socket.emit("newNote", { category: categoryName, note: result.data });
                }, function (err) {
                     alert(err);
                })
